@@ -30,6 +30,11 @@ zstyle ':prezto:load' pmodule \
   'history' \
   'directory' \
   'spectrum' \
+  'gnu-utility' \
+  'archive' \
+  'git' \
+  'osx' \
+  'rsync' \
   'utility' \
   'completion' \
   'prompt'

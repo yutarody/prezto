@@ -11,3 +11,30 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+####myset
+# User configuration
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+
+#ailas
+#alias rootpf='sudo open /opt/homebrew-cask/Caskroom/path-finder/latest/Path\ Finder.app'
+alias top='top -u'
+alias brew-cask-clean-outdated='for c in /opt/homebrew-cask/Caskroom/*; do vl=(`ls -t $c`) && for v in "${vl[@]:1}"; do rm -rf "$c/$v"; done; done'
+alias brew-cask-update='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done && brew-cask-clean-outdated'
+alias generate-cask-token='$(brew --repository)/Library/Taps/caskroom/homebrew-cask/developer/bin/generate_cask_token'
+
+#Brewfile オリジナルのbrewコマンドを使った後に 自動でBrewfileをアップデートするようにする
+if [ -f $(brew --prefix)/etc/brew-wrap ];then
+  source $(brew --prefix)/etc/brew-wrap
+fi
+
+# Fanction
+function pecd {
+    local dir="$( find . -maxdepth 1 -type d | sed -e 's;\./;;' | peco )"
+    if [ ! -z "$dir" ] ; then
+        cd "$dir"
+    fi
+}
